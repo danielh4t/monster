@@ -1,4 +1,4 @@
-package app.stacq.monster
+package app.stacq.monster.ui.beasts
 
 import android.os.Bundle
 import android.view.LayoutInflater

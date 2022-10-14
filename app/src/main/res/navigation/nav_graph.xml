@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/BeastsFragment"
-        android:name="app.stacq.monster.BeastsFragment"
+        android:name="app.stacq.monster.ui.beasts.BeastsFragment"
         android:label="@string/beasts"
         tools:layout="@layout/fragment_beasts">
 
