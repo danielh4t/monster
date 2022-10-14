@@ -4,4 +4,5 @@
     <!-- Strings used for fragments and navigation -->
     <string name="beasts">Beasts</string>
     <string name="unleashed">Unleashed</string>
+    <string name="content_can_image">image of flavor can</string>
 </resources>

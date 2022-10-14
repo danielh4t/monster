@@ -203,3 +203,6 @@ obj/
 ### AndroidStudio Patch ###
 
 !/gradle/wrapper/gradle-wrapper.jar
+
+# placeholder
+app/src/main/res/drawable/original.webp
