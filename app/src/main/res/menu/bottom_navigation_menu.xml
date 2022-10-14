@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/beasts_menu"
+        android:enabled="true"
+        android:icon="@drawable/ic_pets"
+        android:title="@string/beasts" />
+    <item
+        android:id="@+id/unleashed_menu"
+        android:enabled="true"
+        android:icon="@drawable/ic_bolt"
+        android:title="@string/unleashed"/>
+</menu>

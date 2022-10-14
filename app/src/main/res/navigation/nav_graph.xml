@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/BeastsFragment">
+
+    <fragment
+        android:id="@+id/BeastsFragment"
+        android:name="app.stacq.monster.BeastsFragment"
+        android:label="@string/beasts"
+        tools:layout="@layout/fragment_beasts">
+
+        <action
+            android:id="@+id/action_Beasts_to_Unleashed"
+            app:destination="@id/UnleashedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/UnleashedFragment"
+        android:name="app.stacq.monster.UnleashedFragment"
+        android:label="@string/unleashed"
+        tools:layout="@layout/fragment_unleashed">
+        <action
+            android:id="@+id/action_Unleashed_to_Beasts"
+            app:destination="@id/BeastsFragment" />
+    </fragment>
+</navigation>

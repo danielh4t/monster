@@ -1,0 +1,8 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Monster" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- Customize your light theme here. -->
+    </style>
+
+    <style name="Theme.Monster" parent="Base.Theme.Monster" />
+</resources>

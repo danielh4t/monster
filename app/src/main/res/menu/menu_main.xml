@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="app.stacq.monster.MainActivity">
+    <item
+        android:id="@+id/action_account"
+        android:contentDescription="@string/account"
+        android:icon="@drawable/ic_account_circle"
+        android:title="@string/account"
+        app:showAsAction="ifRoom" />
+</menu>
