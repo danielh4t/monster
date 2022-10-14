@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/UnleashedFragment"
-        android:name="app.stacq.monster.UnleashedFragment"
+        android:name="app.stacq.monster.ui.unleashed.UnleashedFragment"
         android:label="@string/unleashed"
         tools:layout="@layout/fragment_unleashed">
         <action
