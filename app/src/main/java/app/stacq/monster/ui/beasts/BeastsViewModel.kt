@@ -29,70 +29,46 @@ class BeastsViewModel : ViewModel() {
             "sweet and salty"
         ),
         Beast(
-            1,
+            4,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
         ),
         Beast(
-            2,
+            5,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
         ),
         Beast(
-            3,
+            6,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
         ),
         Beast(
-            1,
+            7,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
         ),
         Beast(
-            2,
+            8,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
         ),
         Beast(
-            3,
+            9,
             "The Original",
             "Monster Energy",
             "The original green monster energy",
             "sweet and salty"
-        ),
-        Beast(
-            1,
-            "The Original",
-            "Monster Energy",
-            "The original green monster energy",
-            "sweet and salty"
-        ),
-        Beast(
-            2,
-            "The Original",
-            "Monster Energy",
-            "The original green monster energy",
-            "sweet and salty"
-        ),
-        Beast(
-            3,
-            "The Original",
-            "Monster Energy",
-            "The original green monster energy",
-            "sweet and salty"
-        ),
-
-
-
         )
+    )
 }

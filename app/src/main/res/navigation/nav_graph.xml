@@ -13,15 +13,15 @@
 
         <action
             android:id="@+id/action_Beasts_to_Unleashed"
-            app:destination="@id/UnleashedFragment" />
+            app:destination="@id/BeastFragment" />
     </fragment>
     <fragment
-        android:id="@+id/UnleashedFragment"
-        android:name="app.stacq.monster.ui.unleashed.UnleashedFragment"
-        android:label="@string/unleashed"
-        tools:layout="@layout/fragment_unleashed">
+        android:id="@+id/BeastFragment"
+        android:name="app.stacq.monster.ui.beast.BeastFragment"
+        android:label="@string/beast"
+        tools:layout="@layout/fragment_beast">
         <action
-            android:id="@+id/action_Unleashed_to_Beasts"
+            android:id="@+id/action_Beast_to_Beasts"
             app:destination="@id/BeastsFragment" />
     </fragment>
 </navigation>

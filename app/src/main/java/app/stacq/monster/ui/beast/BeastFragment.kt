@@ -1,19 +1,19 @@
-package app.stacq.monster.ui.unleashed
+package app.stacq.monster.ui.beast
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import app.stacq.monster.databinding.FragmentUnleashedBinding
+import androidx.fragment.app.Fragment
+import app.stacq.monster.databinding.FragmentBeastBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  * It show all monster drinks taken by a user
  */
-class UnleashedFragment : Fragment() {
+class BeastFragment : Fragment() {
 
-    private var _binding: FragmentUnleashedBinding? = null
+    private var _binding: FragmentBeastBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -21,13 +21,8 @@ class UnleashedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentUnleashedBinding.inflate(inflater, container, false)
+        _binding = FragmentBeastBinding.inflate(inflater, container, false)
         return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
     }
 
