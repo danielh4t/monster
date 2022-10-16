@@ -37,6 +37,10 @@ class BeastsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        val adapter = BeastAdapter(viewModel)
+        binding.beastList.adapter = adapter
+        adapter.submitList(viewModel.beasts)
+
     }
 
     override fun onDestroyView() {

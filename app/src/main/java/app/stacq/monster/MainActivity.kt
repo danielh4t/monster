@@ -30,20 +30,6 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.beasts_menu -> {
-                    navController.navigate(R.id.action_Unleashed_to_Beasts)
-                    true
-                }
-                R.id.unleashed_menu -> {
-                    navController.navigate(R.id.action_Beasts_to_Unleashed)
-                    true
-                }
-                else -> false
-            }
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
