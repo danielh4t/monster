@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import app.stacq.monster.databinding.FragmentBeastsBinding
 
 
@@ -17,6 +18,8 @@ class BeastsFragment : Fragment() {
     private var _binding: FragmentBeastsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: BeastsViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,6 +27,15 @@ class BeastsFragment : Fragment() {
 
         _binding = FragmentBeastsBinding.inflate(inflater, container, false)
         return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this)[BeastsViewModel::class.java]
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
     }
 
