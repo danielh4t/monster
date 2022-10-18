@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="app.stacq.monster.ui.beasts.BeastsViewModel" />
@@ -13,38 +14,39 @@
             type="app.stacq.monster.data.model.Beast" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/black"
-        android:layout_margin="8dp"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        style="@style/Widget.Material3.CardView.Elevated"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp">
 
-        <ImageView
-            android:id="@+id/beast_image"
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:contentDescription="@string/content_can_image"
-            android:scaleType="centerInside"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/original" />
 
-        <TextView
-            android:id="@+id/beast_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="@{beast.name}"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/beast_image"
-            tools:text="@string/app_name" />
+            android:orientation="vertical"
+            android:gravity="center">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/beast_image"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:padding="16dp"
+                android:contentDescription="@string/content_can_image"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/original" />
+
+            <TextView
+                android:id="@+id/beast_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@{beast.name}"
+                android:textSize="16sp"
+                android:padding="8dp"
+                tools:text="@string/app_name" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
