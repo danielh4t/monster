@@ -18,5 +18,5 @@ class DefaultBeastsRepository(
     override suspend fun getBeasts() = withContext(ioDispatcher) {
         return@withContext emptyList<Beast>()
     }
-    
+
 }
