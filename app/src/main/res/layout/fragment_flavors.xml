@@ -6,16 +6,16 @@
     <data>
         <variable
             name="viewModel"
-            type="app.stacq.monster.ui.beasts.BeastsViewModel" />
+            type="app.stacq.monster.ui.flavors.FlavorsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.beasts.BeastsFragment">
+        tools:context=".ui.flavors.FlavorsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/beast_list"
+            android:id="@+id/flavors"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
