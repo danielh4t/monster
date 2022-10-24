@@ -34,7 +34,7 @@ class FlavorsAdapter(private val viewModel: FlavorsViewModel) :
         }
 
         fun bind(flavor: Flavor, viewModel: FlavorsViewModel) {
-            binding.beast = flavor
+            binding.flavor = flavor
             binding.viewmodel = viewModel
             binding.executePendingBindings()
         }
