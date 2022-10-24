@@ -44,7 +44,7 @@ class BeastAdapter(private val viewModel: BeastsViewModel) :
 class BeastDiffCallback : DiffUtil.ItemCallback<Beast>() {
 
     override fun areItemsTheSame(oldItem: Beast, newItem: Beast): Boolean {
-        return oldItem.id == newItem.id
+        return oldItem.name == newItem.name
     }
 
     override fun areContentsTheSame(oldItem: Beast, newItem: Beast): Boolean {
