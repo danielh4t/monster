@@ -1,15 +1,16 @@
-package app.stacq.monster.ui.beasts
+package app.stacq.monster.ui.flavors
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.stacq.monster.data.model.Beast
-import app.stacq.monster.databinding.BeastItemBinding
+import app.stacq.monster.data.model.Flavor
+import app.stacq.monster.databinding.ListItemFlavorBinding
 
-class BeastAdapter(private val viewModel: BeastsViewModel) :
-    ListAdapter<Beast, BeastAdapter.ViewHolder>(BeastDiffCallback()) {
+
+class FlavorsAdapter(private val viewModel: FlavorsViewModel) :
+    ListAdapter<Flavor, FlavorsAdapter.ViewHolder>(BeastDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,19 +22,19 @@ class BeastAdapter(private val viewModel: BeastsViewModel) :
         holder.bind(item, viewModel)
     }
 
-    class ViewHolder private constructor(private val binding: BeastItemBinding) :
+    class ViewHolder private constructor(private val binding: ListItemFlavorBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = BeastItemBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemFlavorBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
 
-        fun bind(beast: Beast, viewModel: BeastsViewModel) {
-            binding.beast = beast
+        fun bind(flavor: Flavor, viewModel: FlavorsViewModel) {
+            binding.beast = flavor
             binding.viewmodel = viewModel
             binding.executePendingBindings()
         }
@@ -41,13 +42,13 @@ class BeastAdapter(private val viewModel: BeastsViewModel) :
 
 }
 
-class BeastDiffCallback : DiffUtil.ItemCallback<Beast>() {
+class BeastDiffCallback : DiffUtil.ItemCallback<Flavor>() {
 
-    override fun areItemsTheSame(oldItem: Beast, newItem: Beast): Boolean {
-        return oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
+        return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Beast, newItem: Beast): Boolean {
+    override fun areContentsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
         return oldItem == newItem
     }
 

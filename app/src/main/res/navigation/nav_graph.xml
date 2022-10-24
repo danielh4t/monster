@@ -3,25 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/BeastsFragment">
+    app:startDestination="@id/FlavorsFragment">
 
     <fragment
-        android:id="@+id/BeastsFragment"
-        android:name="app.stacq.monster.ui.beasts.BeastsFragment"
-        android:label="@string/beasts"
-        tools:layout="@layout/fragment_beasts">
+        android:id="@+id/FlavorsFragment"
+        android:name="app.stacq.monster.ui.flavors.FlavorsFragment"
+        android:label="@string/flavors"
+        tools:layout="@layout/fragment_flavors">
 
         <action
-            android:id="@+id/action_Beasts_to_Unleashed"
-            app:destination="@id/BeastFragment" />
+            android:id="@+id/action_Flavors_to_Flavor"
+            app:destination="@id/FlavorFragment" />
     </fragment>
     <fragment
-        android:id="@+id/BeastFragment"
-        android:name="app.stacq.monster.ui.beast.BeastFragment"
-        android:label="@string/beast"
-        tools:layout="@layout/fragment_beast">
+        android:id="@+id/FlavorFragment"
+        android:name="app.stacq.monster.ui.flavor.FlavorFragment"
+        android:label="@string/flavor"
+        tools:layout="@layout/fragment_flavor">
         <action
-            android:id="@+id/action_Beast_to_Beasts"
-            app:destination="@id/BeastsFragment" />
+            android:id="@+id/action_Flavor_to_Flavors"
+            app:destination="@id/FlavorsFragment" />
     </fragment>
 </navigation>
