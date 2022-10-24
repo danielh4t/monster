@@ -7,11 +7,11 @@
 
         <variable
             name="viewmodel"
-            type="app.stacq.monster.ui.beasts.BeastsViewModel" />
+            type="app.stacq.monster.ui.flavors.FlavorsViewModel" />
 
         <variable
             name="beast"
-            type="app.stacq.monster.data.model.Beast" />
+            type="app.stacq.monster.data.model.Flavor" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

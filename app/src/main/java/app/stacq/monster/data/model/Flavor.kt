@@ -1,6 +1,6 @@
 package app.stacq.monster.data.model
 
-data class Beast(
+data class Flavor(
     val name: String = "",
     val type: String = "",
     val profile: String = "",

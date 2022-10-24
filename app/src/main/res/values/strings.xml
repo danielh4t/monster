@@ -2,7 +2,7 @@
     <string name="app_name">Monster</string>
     <string name="account">Account</string>
     <!-- fragments and navigation -->
-    <string name="beasts">Beasts</string>
-    <string name="beast">Beast</string>
+    <string name="flavors">Flavors</string>
+    <string name="flavor">Flavor</string>
     <string name="content_can_image">image of flavor can</string>
 </resources>
