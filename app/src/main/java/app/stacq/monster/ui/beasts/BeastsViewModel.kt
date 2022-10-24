@@ -10,12 +10,6 @@ import kotlinx.coroutines.launch
 class BeastsViewModel : ViewModel() {
 
     val beasts: List<Beast> = listOf()
+    val flavors = DefaultBeastsRepository().getFlavors()
 
-    init {
-        val flavors = DefaultBeastsRepository().getFlavors()
-        viewModelScope.launch {
-            flavors.collect()
-        }
-
-    }
 }
