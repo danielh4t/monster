@@ -2,19 +2,16 @@ package app.stacq.monster.ui.flavors
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import app.stacq.monster.R
 import coil.load
 import coil.size.Scale
-
-import coil.size.ViewSizeResolver
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
-@BindingAdapter("loadImage")
-fun ImageView.setImage(image: String) {
+@BindingAdapter("image", "reference")
+fun ImageView.setImage(image: String, reference: StorageReference) {
     // Create a storage reference from our app
-    val storageRef = FirebaseStorage.getInstance().reference
-    val imageRef = storageRef.child(image)
-    imageRef.downloadUrl.addOnSuccessListener {
+    val imageReference = reference.child(image)
+    imageReference.downloadUrl.addOnSuccessListener {
         load(it) {
             scale(Scale.FIT)
         }

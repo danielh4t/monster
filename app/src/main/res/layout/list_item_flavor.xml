@@ -35,7 +35,8 @@
                 android:padding="16dp"
                 android:contentDescription="@string/content_can_image"
                 android:scaleType="centerCrop"
-                app:loadImage="@{flavor.image}" />
+                app:image="@{flavor.image}"
+                app:reference="@{viewmodel.storageReference}" />
 
             <TextView
                 android:id="@+id/flavor_name"
