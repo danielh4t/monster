@@ -4,7 +4,6 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.size.Scale
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
 @BindingAdapter("image", "reference")
@@ -13,6 +12,7 @@ fun ImageView.setImage(image: String, reference: StorageReference) {
     val imageReference = reference.child(image)
     imageReference.downloadUrl.addOnSuccessListener {
         load(it) {
+            crossfade(true)
             scale(Scale.FIT)
         }
     }
