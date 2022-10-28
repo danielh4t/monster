@@ -2,11 +2,8 @@ package app.stacq.monster.ui.flavors
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import app.stacq.monster.R
 import coil.load
 import coil.size.Scale
-
-import coil.size.ViewSizeResolver
 import com.google.firebase.storage.FirebaseStorage
 
 @BindingAdapter("loadImage")
