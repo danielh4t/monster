@@ -1,4 +1,4 @@
-package app.stacq.monster.data.source.local
+package app.stacq.monster.data.source.local.flavor
 
 import androidx.room.Dao
 import androidx.room.Query
@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FlavorDao {
-    
+
     @Query("SELECT * FROM flavor")
     fun getFlavors(): Flow<FlavorEntity>
 }
