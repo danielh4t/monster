@@ -5,11 +5,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "flavor")
 data class FlavorEntity(
-    @PrimaryKey
-    val name: String?,
-    val type: String?,
-    val profile: String?,
-    val product: String?,
-    val tag: String?,
-    val image: String?
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
+    val name: String,
+    val type: String,
+    val profile: String,
+    val product: String,
+    val tag: String,
+    val taste: Boolean?
 )
