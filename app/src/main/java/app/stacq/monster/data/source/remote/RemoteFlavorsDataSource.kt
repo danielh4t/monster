@@ -1,7 +1,6 @@
-package app.stacq.monster.data.repository.flavors
+package app.stacq.monster.data.source.remote
 
 import app.stacq.monster.data.model.Flavor
-import app.stacq.monster.data.repository.FlavorsRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
@@ -13,19 +12,16 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-
-class DefaultFlavorsRepository(
-    private val database: FirebaseFirestore = Firebase.firestore,
+class RemoteFlavorsDataSource(
+    private val database: FirebaseFirestore,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : FlavorsRepository {
+) {
 
-
-    override fun getFlavors(): Flow<List<Flavor>> {
+    fun getFlavors(): Flow<List<Flavor>> {
         return database.collection("flavors")
             .whereNotEqualTo("name", "")
             .snapshots()
             .map { value: QuerySnapshot -> value.toObjects(Flavor::class.java) }
             .flowOn(ioDispatcher)
     }
-
 }

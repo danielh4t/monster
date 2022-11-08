@@ -1,9 +1,9 @@
 package app.stacq.monster.ui.flavors
 
 import androidx.lifecycle.ViewModel
-import app.stacq.monster.data.repository.flavors.DefaultFlavorsRepository
+import app.stacq.monster.data.repository.flavors.FlavorsRepository
 
-class FlavorsViewModel : ViewModel() {
+class FlavorsViewModel(private val flavorsRepository: FlavorsRepository) : ViewModel() {
 
-    val flavors = DefaultFlavorsRepository().getFlavors()
+    val flavors = flavorsRepository.getFlavors()
 }

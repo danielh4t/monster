@@ -9,7 +9,13 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.stacq.monster.data.repository.flavors.FlavorsRepository
+import app.stacq.monster.data.source.local.AppDatabase.Companion.getDatabase
+import app.stacq.monster.data.source.local.LocalFlavorsDataSource
+import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import app.stacq.monster.databinding.FragmentFlavorsBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
 
@@ -22,6 +28,7 @@ class FlavorsFragment : Fragment() {
     private var _binding: FragmentFlavorsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModelFactory: FlavorsViewModelFactory
     private lateinit var viewModel: FlavorsViewModel
 
     override fun onCreateView(
@@ -31,13 +38,20 @@ class FlavorsFragment : Fragment() {
 
         _binding = FragmentFlavorsBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this)[FlavorsViewModel::class.java]
+        val application = requireNotNull(this.activity).application
+        val database = getDatabase(application)
+
+        val localFlavorsDataSource = LocalFlavorsDataSource(database.flavorDao())
+        val remoteFlavorsDataSource = RemoteFlavorsDataSource(Firebase.firestore)
+        val flavorsRepository = FlavorsRepository(localFlavorsDataSource, remoteFlavorsDataSource)
+
+        viewModelFactory = FlavorsViewModelFactory(flavorsRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[FlavorsViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -51,8 +65,6 @@ class FlavorsFragment : Fragment() {
                 }
             }
         }
-
-
     }
 
     override fun onDestroyView() {

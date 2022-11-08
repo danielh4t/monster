@@ -15,3 +15,12 @@ data class FlavorEntity(
     val unleashed: Boolean = false,
     val taste: Boolean?
 )
+
+fun FlavorEntity.toFlavor() = Flavor(
+    name = name,
+    type = type,
+    profile = profile,
+    product = product,
+    tag = tag,
+    image = image
+)
