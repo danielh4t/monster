@@ -9,9 +9,10 @@ import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.databinding.ListItemFlavorBinding
 
 
-class FlavorsAdapter(private val viewModel: FlavorsViewModel) :
-    ListAdapter<Flavor, FlavorsAdapter.ViewHolder>(BeastDiffCallback()) {
-
+class FlavorsAdapter(
+    private val viewModel: FlavorsViewModel,
+    private val onClickListener: OnClickListener
+) : ListAdapter<Flavor, FlavorsAdapter.ViewHolder>(FlavorDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -19,7 +20,7 @@ class FlavorsAdapter(private val viewModel: FlavorsViewModel) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item, viewModel)
+        holder.bind(item, viewModel, onClickListener)
     }
 
     class ViewHolder private constructor(private val binding: ListItemFlavorBinding) :
@@ -33,16 +34,21 @@ class FlavorsAdapter(private val viewModel: FlavorsViewModel) :
             }
         }
 
-        fun bind(flavor: Flavor, viewModel: FlavorsViewModel) {
+        fun bind(flavor: Flavor, viewModel: FlavorsViewModel, onClickListener: OnClickListener) {
             binding.flavor = flavor
-            binding.viewmodel = viewModel
+            binding.viewModel = viewModel
+            binding.card.setOnClickListener { onClickListener.onClick(flavor) }
             binding.executePendingBindings()
         }
     }
 
+    class OnClickListener(private val clickListener: (flavor: Flavor) -> Unit) {
+        fun onClick(flavor: Flavor) = clickListener(flavor)
+    }
+
 }
 
-class BeastDiffCallback : DiffUtil.ItemCallback<Flavor>() {
+class FlavorDiffCallback : DiffUtil.ItemCallback<Flavor>() {
 
     override fun areItemsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
         return oldItem.name == newItem.name

@@ -10,10 +10,10 @@
         android:name="app.stacq.monster.ui.flavors.FlavorsFragment"
         android:label="@string/flavors"
         tools:layout="@layout/fragment_flavors">
-
         <action
             android:id="@+id/action_Flavors_to_Flavor"
             app:destination="@id/FlavorFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/FlavorFragment"
@@ -23,5 +23,8 @@
         <action
             android:id="@+id/action_Flavor_to_Flavors"
             app:destination="@id/FlavorsFragment" />
+        <argument
+            android:name="name"
+            app:argType="string" />
     </fragment>
 </navigation>
