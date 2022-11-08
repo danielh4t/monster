@@ -7,20 +7,11 @@ import androidx.room.PrimaryKey
 data class FlavorEntity(
     @PrimaryKey
     val name: String,
-    val type: String,
-    val profile: String,
-    val product: String,
-    val tag: String,
-    val image: String,
+    val type: String?,
+    val profile: String?,
+    val product: String?,
+    val tag: String?,
+    val image: String?,
     val unleashed: Boolean = false,
     val taste: Boolean?
-)
-
-fun FlavorEntity.toFlavor() = Flavor(
-    name = name,
-    type = type,
-    profile = profile,
-    product = product,
-    tag = tag,
-    image = image
 )
