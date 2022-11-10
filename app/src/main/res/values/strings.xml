@@ -5,4 +5,7 @@
     <string name="flavors">Flavors</string>
     <string name="flavor">Flavor</string>
     <string name="content_can_image">image of flavor can</string>
+    <string name="content_can_large_image">large image of flavor can</string>
+    <string name="flavor_profile">Flavor profile</string>
+    <string name="product">Product</string>
 </resources>
