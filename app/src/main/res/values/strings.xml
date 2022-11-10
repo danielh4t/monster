@@ -8,4 +8,8 @@
     <string name="content_can_large_image">large image of flavor can</string>
     <string name="flavor_profile">Flavor profile</string>
     <string name="product">Product</string>
+    <string name="unleash">Unleash</string>
+    <string name="content_unleash_fab">unleash flavor</string>
+    <string name="content_like_flavor">like flavor</string>
+    <string name="content_dislike_flavor">dislike flavor</string>
 </resources>
