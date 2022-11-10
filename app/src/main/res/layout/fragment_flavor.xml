@@ -105,6 +105,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/profileText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/flavorText" />
 
@@ -119,6 +120,32 @@
             app:layout_constraintTop_toBottomOf="@+id/profileLabelText"
             tools:text="@string/app_name" />
 
+        <TextView
+            android:id="@+id/tagLabelText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/tag"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileText" />
+
+        <TextView
+            android:id="@+id/tagText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tagLabelText"
+            tools:text="@string/app_name" />
+
         <Button
             android:id="@+id/likeButton"
             style="?attr/materialIconButtonStyle"
@@ -131,7 +158,7 @@
             app:layout_constraintEnd_toStartOf="@+id/dislikeButton"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profileText" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <Button
             android:id="@+id/dislikeButton"
@@ -145,7 +172,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/likeButton"
-            app:layout_constraintTop_toBottomOf="@+id/profileText" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/unleashFab"

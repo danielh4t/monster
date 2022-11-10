@@ -9,9 +9,9 @@ import androidx.room.PrimaryKey
 data class FlavorEntity(
     @PrimaryKey
     val name: String,
+    val product: String?,
     val type: String?,
     val profile: String?,
-    val product: String?,
     val tag: String?,
     val image: String?,
     val unleashed: Boolean = false,
