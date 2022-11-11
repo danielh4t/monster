@@ -1,11 +1,10 @@
 package app.stacq.monster.data.source.remote
 
 import app.stacq.monster.data.model.Flavor
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.snapshots
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +21,14 @@ class RemoteFlavorsDataSource(
             .whereNotEqualTo("name", "")
             .snapshots()
             .map { value: QuerySnapshot -> value.toObjects(Flavor::class.java) }
+            .flowOn(ioDispatcher)
+    }
+
+    fun getFlavor(name: String): Flow<Flavor?> {
+        return database.collection("flavors")
+            .document("000")
+            .snapshots()
+            .map { value: DocumentSnapshot -> value.toObject(Flavor::class.java) }
             .flowOn(ioDispatcher)
     }
 }

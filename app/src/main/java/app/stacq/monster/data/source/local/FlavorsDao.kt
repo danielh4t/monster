@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import app.stacq.monster.data.model.FlavorEntity
+import app.stacq.monster.data.source.local.model.FlavorEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

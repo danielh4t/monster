@@ -1,4 +1,4 @@
-package app.stacq.monster.data.model
+package app.stacq.monster.data.source.local.model
 
 import androidx.annotation.Keep
 import androidx.room.Entity
@@ -8,12 +8,13 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "flavor")
 data class FlavorEntity(
     @PrimaryKey
+    val id: Int,
     val name: String,
-    val product: String?,
-    val type: String?,
-    val profile: String?,
-    val tag: String?,
-    val image: String?,
+    val product: String,
+    val type: String,
+    val profile: String,
+    val tag: String,
+    val image: String,
     val unleashed: Boolean = false,
-    val taste: Boolean?
+    val taste: Boolean? = null
 )

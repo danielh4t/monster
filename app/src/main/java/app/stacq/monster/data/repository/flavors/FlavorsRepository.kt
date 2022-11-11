@@ -1,6 +1,6 @@
 package app.stacq.monster.data.repository.flavors
 
-import app.stacq.monster.data.model.Flavor
+import app.stacq.monster.data.source.remote.model.Flavor
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import kotlinx.coroutines.flow.Flow
@@ -14,6 +14,10 @@ class FlavorsRepository(
 
     fun getFlavors(): Flow<List<Flavor>> {
         return remoteFlavorsDataSource.getFlavors().catch { emit(emptyList()) }
+    }
+
+    fun getFlavor(name: String): Flow<Flavor?> {
+        return remoteFlavorsDataSource.getFlavor(name)
     }
 
 }

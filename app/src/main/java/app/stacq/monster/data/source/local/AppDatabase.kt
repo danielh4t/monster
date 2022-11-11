@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import app.stacq.monster.data.model.FlavorEntity
+import app.stacq.monster.data.source.local.model.FlavorEntity
 
 @Database(entities = [FlavorEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {

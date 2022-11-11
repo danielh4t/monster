@@ -11,7 +11,7 @@
 
         <variable
             name="flavor"
-            type="app.stacq.monster.data.model.Flavor" />
+            type="app.stacq.monster.data.source.remote.model.Flavor" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

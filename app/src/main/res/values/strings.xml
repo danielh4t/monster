@@ -13,4 +13,5 @@
     <string name="content_like_flavor">like flavor</string>
     <string name="content_dislike_flavor">dislike flavor</string>
     <string name="tag">Tag</string>
+    <string name="type">Type</string>
 </resources>
