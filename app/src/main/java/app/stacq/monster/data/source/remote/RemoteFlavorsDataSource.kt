@@ -1,6 +1,7 @@
 package app.stacq.monster.data.source.remote
 
 import app.stacq.monster.data.model.Flavor
+import app.stacq.monster.data.source.remote.model.FlavorDocument
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
@@ -16,19 +17,18 @@ class RemoteFlavorsDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    fun getFlavors(): Flow<List<Flavor>> {
+    fun getFlavors(): Flow<List<FlavorDocument>> {
         return database.collection("flavors")
-            .whereNotEqualTo("name", "")
             .snapshots()
-            .map { value: QuerySnapshot -> value.toObjects(Flavor::class.java) }
+            .map { value: QuerySnapshot -> value.toObjects(FlavorDocument::class.java) }
             .flowOn(ioDispatcher)
     }
 
-    fun getFlavor(name: String): Flow<Flavor?> {
+    fun getFlavor(name: String): Flow<FlavorDocument?> {
         return database.collection("flavors")
             .document(name)
             .snapshots()
-            .map { value: DocumentSnapshot -> value.toObject(Flavor::class.java) }
+            .map { value: DocumentSnapshot -> value.toObject(FlavorDocument::class.java) }
             .flowOn(ioDispatcher)
     }
 }
