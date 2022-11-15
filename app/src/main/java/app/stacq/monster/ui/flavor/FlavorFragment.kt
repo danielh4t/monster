@@ -43,7 +43,7 @@ class FlavorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val args = FlavorFragmentArgs.fromBundle(requireArguments())
-        val name: String = args.name
+        val flavorName: String = args.name
 
         val application = requireNotNull(this.activity).application
         val database = AppDatabase.getDatabase(application)
@@ -52,7 +52,7 @@ class FlavorFragment : Fragment() {
         val remoteFlavorsDataSource = RemoteFlavorsDataSource(Firebase.firestore)
         val flavorsRepository = FlavorsRepository(localFlavorsDataSource, remoteFlavorsDataSource)
 
-        viewModelFactory = FlavorViewModelFactory(flavorsRepository, name)
+        viewModelFactory = FlavorViewModelFactory(flavorsRepository, flavorName)
         viewModel = ViewModelProvider(this, viewModelFactory)[FlavorViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
 

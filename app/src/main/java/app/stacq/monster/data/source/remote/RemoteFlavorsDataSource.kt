@@ -1,6 +1,5 @@
 package app.stacq.monster.data.source.remote
 
-import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.data.source.remote.model.FlavorDocument
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore

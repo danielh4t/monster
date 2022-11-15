@@ -15,9 +15,13 @@ class LocalFlavorsDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    fun getFlavors(): Flow<List<Flavor>> {
+    fun getFlavors(): Flow<List<FlavorEntity>> {
         return database.getFlavors()
-            .map { values -> values.map { value -> value.toFlavor() } }
+            .flowOn(ioDispatcher)
+    }
+
+    fun getFlavor(flavorName: String): Flow<FlavorEntity?> {
+        return database.getFlavor(flavorName)
             .flowOn(ioDispatcher)
     }
 

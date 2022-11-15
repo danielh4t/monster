@@ -1,10 +1,9 @@
 package app.stacq.monster.data.repository.flavors
 
-
-import android.util.Log
 import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.data.model.toFlavorEntity
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
+import app.stacq.monster.data.source.local.model.toFlavor
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import app.stacq.monster.data.source.remote.model.toFlavor
 import kotlinx.coroutines.flow.*
@@ -25,15 +24,13 @@ class FlavorsRepository(
                     )
                 }
             }
-            .catch { e ->
-                Log.e("flavors", e.toString())
-                emptyFlow<List<Flavor>>()
-            }
+            .catch { emptyFlow<List<Flavor>>() }
     }
 
     fun getFlavor(name: String): Flow<Flavor?> {
-        Log.d("name", name)
-        return remoteFlavorsDataSource.getFlavor(name).transform { flavor -> flavor?.toFlavor() }
+        return localFlavorsDataSource.getFlavor(name)
+            .map { flavorEntity -> flavorEntity?.toFlavor() }
+            .catch { emptyFlow<Flavor>() }
     }
 
 }

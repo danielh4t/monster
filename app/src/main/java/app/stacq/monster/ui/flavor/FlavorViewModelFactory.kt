@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProvider
 import app.stacq.monster.data.repository.flavors.FlavorsRepository
 
 
-class FlavorViewModelFactory(private val flavorsRepository: FlavorsRepository, private val name: String) :
+class FlavorViewModelFactory(private val flavorsRepository: FlavorsRepository, private val flavorName: String) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         with(modelClass) {
             when {
                 isAssignableFrom(FlavorViewModel::class.java) ->
-                    return FlavorViewModel(flavorsRepository, name) as T
+                    return FlavorViewModel(flavorsRepository, flavorName) as T
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
             }
         }

@@ -13,6 +13,10 @@ interface FlavorsDao {
     @Query("SELECT * FROM flavor")
     fun getFlavors(): Flow<List<FlavorEntity>>
 
+
+    @Query("SELECT * FROM flavor WHERE name=:flavorName")
+    fun getFlavor(flavorName: String): Flow<FlavorEntity?>
+
     /**
      * Store a flavor.
      * If the flavor entity exists, ignore it.
