@@ -7,7 +7,7 @@
 
         <variable
             name="flavor"
-            type="app.stacq.monster.data.source.remote.model.Flavor" />
+            type="app.stacq.monster.data.model.Flavor" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
