@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.stacq.monster.data.source.remote.model.Flavor
+import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.databinding.ListItemFlavorBinding
 
 

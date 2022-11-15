@@ -57,10 +57,8 @@ class FlavorsFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         val listener = FlavorsAdapter.OnClickListener { flavor ->
-            flavor.name?.let {
-                val action = FlavorsFragmentDirections.actionFlavorsToFlavor(flavor.name)
-                this.findNavController().navigate(action)
-            }
+            val action = FlavorsFragmentDirections.actionFlavorsToFlavor(flavor.name)
+            this.findNavController().navigate(action)
         }
         val adapter = FlavorsAdapter(viewModel, listener)
         binding.flavors.adapter = adapter

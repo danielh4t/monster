@@ -26,7 +26,7 @@ class RemoteFlavorsDataSource(
 
     fun getFlavor(name: String): Flow<Flavor?> {
         return database.collection("flavors")
-            .document("000")
+            .document(name)
             .snapshots()
             .map { value: DocumentSnapshot -> value.toObject(Flavor::class.java) }
             .flowOn(ioDispatcher)

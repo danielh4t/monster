@@ -1,8 +1,8 @@
 package app.stacq.monster.data.source.local
 
-import app.stacq.monster.data.source.remote.model.Flavor
+import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.data.source.local.model.FlavorEntity
-import app.stacq.monster.data.model.toFlavor
+import app.stacq.monster.data.source.local.model.toFlavor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
