@@ -1,0 +1,12 @@
+package app.stacq.monster.data.model
+
+import app.stacq.monster.data.source.local.model.FlavorEntity
+
+fun Flavor.toFlavorEntity() = FlavorEntity(
+    name = name,
+    type = type,
+    profile = profile,
+    product = product,
+    tag = tag,
+    image = image
+)
