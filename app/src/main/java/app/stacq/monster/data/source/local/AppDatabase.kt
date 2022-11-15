@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import app.stacq.monster.data.source.local.model.FlavorEntity
 
-@Database(entities = [FlavorEntity::class], version = 1)
+@Database(entities = [FlavorEntity::class], version = 1, exportSchema = false )
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun flavorDao(): FlavorsDao
