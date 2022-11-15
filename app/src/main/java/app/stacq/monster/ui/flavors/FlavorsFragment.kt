@@ -9,7 +9,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import app.stacq.monster.data.repository.flavors.FlavorsRepository
 import app.stacq.monster.data.source.local.AppDatabase.Companion.getDatabase
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
@@ -56,11 +55,7 @@ class FlavorsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        val listener = FlavorsAdapter.OnClickListener { flavor ->
-            val action = FlavorsFragmentDirections.actionFlavorsToFlavor(flavor.name)
-            this.findNavController().navigate(action)
-        }
-        val adapter = FlavorsAdapter(viewModel, listener)
+        val adapter = FlavorsAdapter(viewModel)
         binding.flavors.adapter = adapter
 
         lifecycleScope.launch {

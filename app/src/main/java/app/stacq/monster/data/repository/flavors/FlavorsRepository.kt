@@ -32,6 +32,7 @@ class FlavorsRepository(
     }
 
     fun getFlavor(name: String): Flow<Flavor?> {
+        Log.d("name", name)
         return remoteFlavorsDataSource.getFlavor(name).transform { flavor -> flavor?.toFlavor() }
     }
 

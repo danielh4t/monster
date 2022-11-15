@@ -2,6 +2,7 @@ package app.stacq.monster.ui.flavors
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,8 +11,7 @@ import app.stacq.monster.databinding.ListItemFlavorBinding
 
 
 class FlavorsAdapter(
-    private val viewModel: FlavorsViewModel,
-    private val onClickListener: OnClickListener
+    private val viewModel: FlavorsViewModel
 ) : ListAdapter<Flavor, FlavorsAdapter.ViewHolder>(FlavorDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,8 +19,12 @@ class FlavorsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.bind(item, viewModel, onClickListener)
+        val flavor = getItem(position)
+        holder.bind(flavor, viewModel)
+        holder.itemView.setOnClickListener { view ->
+            val action = FlavorsFragmentDirections.actionFlavorsToFlavor(flavor.name)
+            view.findNavController().navigate(action)
+        }
     }
 
     class ViewHolder private constructor(private val binding: ListItemFlavorBinding) :
@@ -34,18 +38,12 @@ class FlavorsAdapter(
             }
         }
 
-        fun bind(flavor: Flavor, viewModel: FlavorsViewModel, onClickListener: OnClickListener) {
+        fun bind(flavor: Flavor, viewModel: FlavorsViewModel) {
             binding.flavor = flavor
             binding.viewModel = viewModel
-            binding.card.setOnClickListener { onClickListener.onClick(flavor) }
             binding.executePendingBindings()
         }
     }
-
-    class OnClickListener(private val clickListener: (flavor: Flavor) -> Unit) {
-        fun onClick(flavor: Flavor) = clickListener(flavor)
-    }
-
 }
 
 class FlavorDiffCallback : DiffUtil.ItemCallback<Flavor>() {
