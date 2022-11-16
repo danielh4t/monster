@@ -1,6 +1,7 @@
 package app.stacq.monster.ui.flavor
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import app.stacq.monster.R
 import app.stacq.monster.data.repository.flavors.FlavorsRepository
 import app.stacq.monster.data.source.local.AppDatabase
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
@@ -55,6 +57,16 @@ class FlavorFragment : Fragment() {
         viewModelFactory = FlavorViewModelFactory(flavorsRepository, flavorName)
         viewModel = ViewModelProvider(this, viewModelFactory)[FlavorViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
+
+        binding.toggleButton.addOnButtonCheckedListener { _, checkedId, checked ->
+            when(checkedId) {
+                R.id.likeButton -> {
+                    if (checked) {
+                        Log.d("Check", checkedId.toString())
+                    }
+                }
+            }
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {

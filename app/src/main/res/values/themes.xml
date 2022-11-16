@@ -1,14 +1,9 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Base.Theme.Monster" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Monster" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.Monster" parent="Base.Theme.Monster" />
-
-    <style name="roundedImageView" parent="">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeBottomLeft">16dp</item>
-        <item name="cornerSizeBottomRight">16dp</item>
-    </style>
 </resources>

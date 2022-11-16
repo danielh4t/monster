@@ -141,31 +141,35 @@
             app:layout_constraintTop_toBottomOf="@+id/tagLabelText"
             tools:text="@string/app_name" />
 
-        <Button
-            android:id="@+id/likeButton"
-            style="?attr/materialIconButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/content_like_flavor"
-            app:icon="@drawable/ic_heart"
-            app:layout_constraintEnd_toStartOf="@+id/dislikeButton"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tagText" />
 
-        <Button
-            android:id="@+id/dislikeButton"
-            style="?attr/materialIconButtonStyle"
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggleButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:contentDescription="@string/content_dislike_flavor"
-            app:icon="@drawable/ic_heart_crack"
+            android:layout_marginTop="32dp"
+            app:singleSelection="true"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/likeButton"
-            app:layout_constraintTop_toBottomOf="@+id/tagText" />
+            app:layout_constraintTop_toBottomOf="@+id/tagText">
+            <Button
+                style="?attr/materialButtonOutlinedStyle"
+                android:id="@+id/likeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/content_like_flavor"
+                app:icon="@drawable/ic_heart"
+                android:text="@string/like"
+                />
+            <Button
+                style="?attr/materialButtonOutlinedStyle"
+                android:id="@+id/dislikeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@drawable/ic_heart_crack"
+                android:text="@string/dislike"
+                />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/unleashFab"

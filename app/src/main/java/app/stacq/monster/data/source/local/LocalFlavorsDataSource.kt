@@ -1,13 +1,11 @@
 package app.stacq.monster.data.source.local
 
-import app.stacq.monster.data.model.Flavor
+import androidx.paging.PagingSource
 import app.stacq.monster.data.source.local.model.FlavorEntity
-import app.stacq.monster.data.source.local.model.toFlavor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class LocalFlavorsDataSource(
@@ -15,9 +13,8 @@ class LocalFlavorsDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    fun getFlavors(): Flow<List<FlavorEntity>> {
+    fun getFlavors(): PagingSource<Int, FlavorEntity> {
         return database.getFlavors()
-            .flowOn(ioDispatcher)
     }
 
     fun getFlavor(flavorName: String): Flow<FlavorEntity?> {
@@ -25,7 +22,11 @@ class LocalFlavorsDataSource(
             .flowOn(ioDispatcher)
     }
 
-    suspend fun storeFlavor(flavorEntity: FlavorEntity) = withContext(ioDispatcher) {
-        database.storeFlavor(flavorEntity)
+    suspend fun insertFlavors(flavorEntities: List<FlavorEntity>) = withContext(ioDispatcher) {
+        database.insertFlavors(flavorEntities)
+    }
+
+    suspend fun getLastFlavorId(): Int? = withContext(ioDispatcher) {
+        database.getLastFlavorId()
     }
 }

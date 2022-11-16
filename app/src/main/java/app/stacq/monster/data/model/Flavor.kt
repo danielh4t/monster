@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class Flavor(
+    val id: Int,
     val name: String,
     val product: String,
     val type: String,

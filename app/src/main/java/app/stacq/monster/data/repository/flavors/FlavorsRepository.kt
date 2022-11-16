@@ -1,12 +1,18 @@
 package app.stacq.monster.data.repository.flavors
 
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import app.stacq.monster.data.model.Flavor
-import app.stacq.monster.data.model.toFlavorEntity
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
+import app.stacq.monster.data.source.local.model.FlavorEntity
 import app.stacq.monster.data.source.local.model.toFlavor
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
-import app.stacq.monster.data.source.remote.model.toFlavor
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.emptyFlow
+import kotlinx.coroutines.flow.map
 
 
 class FlavorsRepository(
@@ -14,17 +20,15 @@ class FlavorsRepository(
     private val remoteFlavorsDataSource: RemoteFlavorsDataSource
 ) {
 
-    fun getFlavors(): Flow<List<Flavor>> {
-        return remoteFlavorsDataSource.getFlavors()
-            .map { flavors -> flavors.map { flavorDocument -> flavorDocument.toFlavor() } }
-            .onEach { flavors ->
-                flavors.map { flavor: Flavor ->
-                    localFlavorsDataSource.storeFlavor(
-                        flavor.toFlavorEntity()
-                    )
-                }
-            }
-            .catch { emptyFlow<List<Flavor>>() }
+    @OptIn(ExperimentalPagingApi::class)
+    fun getFlavors(): Flow<PagingData<FlavorEntity>> {
+
+        return Pager(
+            config = PagingConfig(pageSize = 100),
+            remoteMediator = FlavorsRemoteMediator(localFlavorsDataSource, remoteFlavorsDataSource)
+        ) {
+            localFlavorsDataSource.getFlavors()
+        }.flow
     }
 
     fun getFlavor(name: String): Flow<Flavor?> {

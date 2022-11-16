@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
@@ -16,6 +17,7 @@ import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import app.stacq.monster.databinding.FragmentFlavorsBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -60,8 +62,8 @@ class FlavorsFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.flavors.collect {
-                    adapter.submitList(it)
+                viewModel.flavorsPagingDataFlow.collectLatest {
+                    adapter.submitData(it)
                 }
             }
         }
