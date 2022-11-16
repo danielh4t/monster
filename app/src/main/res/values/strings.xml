@@ -16,4 +16,5 @@
     <string name="type">Type</string>
     <string name="like">Like</string>
     <string name="dislike">Dislike</string>
+    <string name="profile">Profile</string>
 </resources>

@@ -5,10 +5,13 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.stacq.monster.databinding.ActivityMainBinding
+import app.stacq.monster.ui.flavor.FlavorFragmentDirections
+import app.stacq.monster.ui.flavors.FlavorsFragmentDirections
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,13 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setSupportActionBar(binding.toolbar)
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        appBarConfiguration = AppBarConfiguration(navController().graph)
+        setupActionBarWithNavController(navController(), appBarConfiguration)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -38,15 +38,32 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_account -> true
+            R.id.action_account -> {
+                when (navController().currentDestination?.id) {
+                    R.id.FlavorsFragment -> {
+                        val action =
+                            FlavorsFragmentDirections.actionFlavorsFragmentToProfileFragment()
+                        navController().navigate(action)
+                    }
+                    R.id.FlavorFragment -> {
+                        val action =
+                            FlavorFragmentDirections.actionFlavorFragmentToProfileFragment()
+                        navController().navigate(action)
+                    }
+                }
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
+        return navController().navigateUp()
+    }
+
+    private fun navController(): NavController {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        val navController = navHostFragment.navController
-        return navController.navigateUp()
+        return navHostFragment.navController
     }
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_Flavors_to_Flavor"
             app:destination="@id/FlavorFragment" />
+        <action
+            android:id="@+id/action_FlavorsFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
 
     </fragment>
     <fragment
@@ -26,5 +29,20 @@
         <argument
             android:name="name"
             app:argType="string" />
+        <action
+            android:id="@+id/action_FlavorFragment_to_ProfileFragment"
+            app:destination="@id/ProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ProfileFragment"
+        android:name="app.stacq.monster.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_ProfileFragment_to_FlavorsFragment"
+            app:destination="@id/FlavorsFragment" />
+        <action
+            android:id="@+id/action_ProfileFragment_to_FlavorFragment"
+            app:destination="@id/FlavorFragment" />
     </fragment>
 </navigation>
