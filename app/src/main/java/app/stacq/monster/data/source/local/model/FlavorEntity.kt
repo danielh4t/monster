@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "flavor")
 data class FlavorEntity(
     @PrimaryKey
+    val id: Int,
     val name: String,
     val product: String,
     val type: String,
