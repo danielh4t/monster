@@ -37,4 +37,8 @@ class FlavorsRepository(
             .catch { emptyFlow<Flavor>() }
     }
 
+    suspend fun updateFlavor(flavorEntity: FlavorEntity) {
+        localFlavorsDataSource.updateFlavor(flavorEntity)
+    }
+
 }

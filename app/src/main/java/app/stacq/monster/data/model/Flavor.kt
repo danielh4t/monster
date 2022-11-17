@@ -10,5 +10,7 @@ data class Flavor(
     val type: String,
     val profile: String,
     val tag: String,
-    val image: String
+    val image: String,
+    var rating: Int?,
+    var unleashed: Int
 )

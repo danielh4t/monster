@@ -12,6 +12,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import app.stacq.monster.databinding.ActivityMainBinding
 import app.stacq.monster.ui.flavor.FlavorFragmentDirections
 import app.stacq.monster.ui.flavors.FlavorsFragmentDirections
+import app.stacq.monster.util.installCheckProviderFactory
+import com.google.firebase.FirebaseApp
+import com.google.firebase.appcheck.FirebaseAppCheck
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
+
+        FirebaseApp.initializeApp(this)
+        FirebaseAppCheck.getInstance().installCheckProviderFactory()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

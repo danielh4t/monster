@@ -29,4 +29,8 @@ class LocalFlavorsDataSource(
     suspend fun getLastFlavorId(): Int? = withContext(ioDispatcher) {
         database.getLastFlavorId()
     }
+
+    suspend fun updateFlavor(flavorEntity: FlavorEntity) = withContext(ioDispatcher) {
+        database.updateFlavor(flavorEntity)
+    }
 }

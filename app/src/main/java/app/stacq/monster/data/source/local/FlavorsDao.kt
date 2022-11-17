@@ -1,10 +1,7 @@
 package app.stacq.monster.data.source.local
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import app.stacq.monster.data.source.local.model.FlavorEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -22,5 +19,8 @@ interface FlavorsDao {
 
     @Query("SELECT id FROM flavor ORDER BY id LIMIT 1")
     suspend fun getLastFlavorId(): Int?
+
+    @Update
+    suspend fun updateFlavor(flavorEntity: FlavorEntity)
 
 }

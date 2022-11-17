@@ -9,5 +9,7 @@ fun FlavorEntity.toFlavor() = Flavor(
     profile = profile,
     product = product,
     tag = tag,
-    image = image
+    image = image,
+    rating = rating,
+    unleashed = unleashed
 )

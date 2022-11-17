@@ -57,16 +57,8 @@ class FlavorFragment : Fragment() {
         viewModelFactory = FlavorViewModelFactory(flavorsRepository, flavorName)
         viewModel = ViewModelProvider(this, viewModelFactory)[FlavorViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
-        binding.toggleButton.addOnButtonCheckedListener { _, checkedId, checked ->
-            when(checkedId) {
-                R.id.likeButton -> {
-                    if (checked) {
-                        Log.d("Check", checkedId.toString())
-                    }
-                }
-            }
-        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
