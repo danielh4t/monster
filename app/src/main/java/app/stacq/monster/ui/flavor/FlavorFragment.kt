@@ -59,6 +59,9 @@ class FlavorFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        binding.ratingSlider.addOnChangeListener { _, value, _ ->
+            viewModel.rate(value)
+        }
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
