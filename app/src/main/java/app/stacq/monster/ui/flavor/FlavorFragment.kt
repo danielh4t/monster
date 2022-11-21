@@ -1,16 +1,14 @@
 package app.stacq.monster.ui.flavor
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import app.stacq.monster.R
 import app.stacq.monster.data.repository.flavors.FlavorsRepository
 import app.stacq.monster.data.source.local.AppDatabase
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
@@ -29,9 +27,6 @@ class FlavorFragment : Fragment() {
     private var _binding: FragmentFlavorBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: FlavorViewModelFactory
-    private lateinit var viewModel: FlavorViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,14 +43,15 @@ class FlavorFragment : Fragment() {
         val flavorName: String = args.name
 
         val application = requireNotNull(this.activity).application
-        val database = AppDatabase.getDatabase(application)
+        val database =  AppDatabase.getDatabase(application)
 
         val localFlavorsDataSource = LocalFlavorsDataSource(database.flavorDao())
         val remoteFlavorsDataSource = RemoteFlavorsDataSource(Firebase.firestore)
         val flavorsRepository = FlavorsRepository(localFlavorsDataSource, remoteFlavorsDataSource)
+        val viewModel: FlavorViewModel by activityViewModels {
+            FlavorViewModelFactory(flavorsRepository, flavorName)
+        }
 
-        viewModelFactory = FlavorViewModelFactory(flavorsRepository, flavorName)
-        viewModel = ViewModelProvider(this, viewModelFactory)[FlavorViewModel::class.java]
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 

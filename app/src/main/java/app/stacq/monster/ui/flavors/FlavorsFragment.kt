@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -30,9 +31,6 @@ class FlavorsFragment : Fragment() {
     private var _binding: FragmentFlavorsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModelFactory: FlavorsViewModelFactory
-    private lateinit var viewModel: FlavorsViewModel
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,8 +50,12 @@ class FlavorsFragment : Fragment() {
         val remoteFlavorsDataSource = RemoteFlavorsDataSource(Firebase.firestore)
         val flavorsRepository = FlavorsRepository(localFlavorsDataSource, remoteFlavorsDataSource)
 
-        viewModelFactory = FlavorsViewModelFactory(flavorsRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[FlavorsViewModel::class.java]
+        val viewModel: FlavorsViewModel by activityViewModels {
+            FlavorsViewModelFactory(
+                flavorsRepository
+            )
+        }
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
