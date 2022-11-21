@@ -18,4 +18,7 @@
     <string name="dislike">Dislike</string>
     <string name="profile">Profile</string>
     <string name="rating">Rating</string>
+    <string name="content_decrease_unleashed">decrease unleashed monsters</string>
+    <string name="content_increase_unleashed">increase unleashed monsters</string>
+    <string name="content_rating_slider">rating slider</string>
 </resources>
