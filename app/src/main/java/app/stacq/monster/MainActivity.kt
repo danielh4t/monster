@@ -10,8 +10,6 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import app.stacq.monster.databinding.ActivityMainBinding
-import app.stacq.monster.ui.flavor.FlavorFragmentDirections
-import app.stacq.monster.ui.flavors.FlavorsFragmentDirections
 import app.stacq.monster.util.installCheckProviderFactory
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.FirebaseAppCheck
@@ -44,19 +42,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_account -> {
-                when (navController().currentDestination?.id) {
-                    R.id.FlavorsFragment -> {
-                        val action =
-                            FlavorsFragmentDirections.actionFlavorsFragmentToProfileFragment()
-                        navController().navigate(action)
-                    }
-                    R.id.FlavorFragment -> {
-                        val action =
-                            FlavorFragmentDirections.actionFlavorFragmentToProfileFragment()
-                        navController().navigate(action)
-                    }
-                }
+            R.id.action_profile -> {
+                val action = NavGraphDirections.actionGlobalProfileFragment()
+                navController().navigate(action)
+                true
+            }
+            R.id.action_settings -> {
+                val action = NavGraphDirections.actionGlobalSettingsFragment()
+                navController().navigate(action)
                 true
             }
             else -> super.onOptionsItemSelected(item)

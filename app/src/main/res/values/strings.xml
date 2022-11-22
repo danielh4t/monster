@@ -21,4 +21,18 @@
     <string name="content_decrease_unleashed">decrease unleashed monsters</string>
     <string name="content_increase_unleashed">increase unleashed monsters</string>
     <string name="content_rating_slider">rating slider</string>
+    <string name="settings">Settings</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="sound_header">Sound</string>
+
+    <!-- Sound Preferences -->
+    <string name="plus_sound_title">Play plus sound</string>
+    <string name="plus_sound_summary_on">Play sound of opening a can tab</string>
+    <string name="plus_sound_summary_off">Mute sound of opening a can tab</string>
+
+    <string name="minus_sound_title">Play minus sound</string>
+    <string name="minus_sound_summary_on">Play sound of crushing a can</string>
+    <string name="minus_sound_summary_off">Mute sound of crushing a can</string>
 </resources>

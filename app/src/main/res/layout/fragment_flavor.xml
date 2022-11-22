@@ -167,7 +167,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/content_rating_slider"
-            android:stepSize="10.0"
+            android:stepSize="5.0"
             android:value="@{flavor.rating}"
             android:valueFrom="0.0"
             android:valueTo="100.0"

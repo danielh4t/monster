@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="app.stacq.monster.MainActivity">
     <item
-        android:id="@+id/action_account"
-        android:contentDescription="@string/account"
+        android:id="@+id/action_profile"
+        android:contentDescription="@string/profile"
         android:icon="@drawable/ic_account_circle"
-        android:title="@string/account"
+        android:title="@string/profile"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:contentDescription="@string/settings"
+        android:title="Settings"
+        app:showAsAction="never" />
+
 </menu>
