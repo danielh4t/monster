@@ -33,7 +33,6 @@ class FlavorsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFlavorsBinding.inflate(inflater, container, false)
         return binding.root
     }

@@ -22,9 +22,8 @@ class FlavorsRepository(
 
     @OptIn(ExperimentalPagingApi::class)
     fun getFlavors(): Flow<PagingData<FlavorEntity>> {
-
         return Pager(
-            config = PagingConfig(pageSize = 100),
+            config = PagingConfig(pageSize = 10),
             remoteMediator = FlavorsRemoteMediator(localFlavorsDataSource, remoteFlavorsDataSource)
         ) {
             localFlavorsDataSource.getFlavors()

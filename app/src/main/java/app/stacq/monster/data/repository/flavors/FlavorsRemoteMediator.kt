@@ -26,22 +26,19 @@ class FlavorsRemoteMediator(
     ): MediatorResult {
         return try {
             val loadKey = when (loadType) {
-                // For REFRESH, pass `null` to load the first page.
-                // Skip PREPEND since REFRESH will always load the first page in the list
-                LoadType.REFRESH -> null
-                //  load data at the beginning of the currently loaded data set,
-                LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
+                // load the first page
+                LoadType.REFRESH -> 0
                 // Load data at the end of the currently loaded data set
                 LoadType.APPEND -> {
-                    // Check if the last item is `null` when appending.
-                    // Passing `null` to remote data source is only valid for initial load.
-                    // If lastItem is `null` it means no items were loaded after the initial
-                    // REFRESH and there are no more items to load.
+                    // If lastItem is `null` end reached
                     val lastItem = state.lastItemOrNull()
                         ?: return MediatorResult.Success(endOfPaginationReached = true)
-
                     lastItem.id
                 }
+                // never prepend, since REFRESH will always load the first page in the list.
+                // return, reporting end of pagination.
+                LoadType.PREPEND ->
+                    return MediatorResult.Success(endOfPaginationReached = true)
             }
 
             val flavors = remoteFlavorsDataSource.getFlavorsQuery(loadKey, state.config.pageSize)

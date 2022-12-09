@@ -50,7 +50,7 @@ class FlavorsAdapter(
 class FlavorDiffCallback : DiffUtil.ItemCallback<Flavor>() {
 
     override fun areItemsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
