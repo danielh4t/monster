@@ -7,7 +7,7 @@ import androidx.paging.PagingData
 import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
 import app.stacq.monster.data.source.local.model.FlavorEntity
-import app.stacq.monster.data.source.local.model.toFlavor
+import app.stacq.monster.data.model.toFlavor
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
