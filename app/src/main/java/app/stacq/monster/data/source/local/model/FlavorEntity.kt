@@ -16,6 +16,5 @@ data class FlavorEntity(
     val tag: String,
     val image: String,
     val rating: Int?,
-    val unleashed: Int = 0,
-
+    val unleashed: Int = 0
 )
