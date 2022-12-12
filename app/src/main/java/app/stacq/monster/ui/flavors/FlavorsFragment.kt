@@ -59,7 +59,7 @@ class FlavorsFragment : Fragment() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.flavorsPagingDataFlow.collectLatest {
+                viewModel.flavors.collectLatest {
                     adapter.submitData(it)
                 }
             }

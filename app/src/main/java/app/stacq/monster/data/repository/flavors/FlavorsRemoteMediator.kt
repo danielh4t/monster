@@ -9,8 +9,6 @@ import app.stacq.monster.data.source.local.model.FlavorEntity
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import app.stacq.monster.data.source.remote.model.toFlavorEntity
 import coil.network.HttpException
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import java.io.IOException
 
 
@@ -29,28 +27,24 @@ class FlavorsRemoteMediator(
                 // load the first page
                 LoadType.REFRESH -> 0
                 // Load data at the end of the currently loaded data set
+                // never prepend, since REFRESH will always load the first page in the list.
+                // return, reporting end of pagination.
+                LoadType.PREPEND ->
+                    return MediatorResult.Success(endOfPaginationReached = true)
                 LoadType.APPEND -> {
                     // If lastItem is `null` end reached
                     val lastItem = state.lastItemOrNull()
                         ?: return MediatorResult.Success(endOfPaginationReached = true)
                     lastItem.id
                 }
-                // never prepend, since REFRESH will always load the first page in the list.
-                // return, reporting end of pagination.
-                LoadType.PREPEND ->
-                    return MediatorResult.Success(endOfPaginationReached = true)
             }
 
-            val flavors = remoteFlavorsDataSource.getFlavorsQuery(loadKey, state.config.pageSize)
-                .map { flavors -> flavors.map { flavorDocument -> flavorDocument.toFlavorEntity() } }
-                .map { flavorEntities: List<FlavorEntity> ->
-                    localFlavorsDataSource.insertFlavors(
-                        flavorEntities
-                    )
-                }
-                .toList()
+            val documents = remoteFlavorsDataSource.getFlavorsQuery(loadKey, state.config.pageSize)
+            val endOfPaginationReached = documents.isEmpty()
 
-            val endOfPaginationReached = flavors.isEmpty()
+            val entities = documents.map { flavorDocument -> flavorDocument.toFlavorEntity() }
+            localFlavorsDataSource.insertFlavors(entities)
+
             MediatorResult.Success(endOfPaginationReached = endOfPaginationReached)
         } catch (exception: IOException) {
             MediatorResult.Error(exception)

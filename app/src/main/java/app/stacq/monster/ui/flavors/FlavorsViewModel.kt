@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 
 class FlavorsViewModel(flavorsRepository: FlavorsRepository) : ViewModel() {
 
-    val flavorsPagingDataFlow = flavorsRepository.getFlavors()
+    val flavors = flavorsRepository.getFlavors()
         .map { pagingData ->
             pagingData.map { flavorEntity -> flavorEntity.toFlavor() }
         }
