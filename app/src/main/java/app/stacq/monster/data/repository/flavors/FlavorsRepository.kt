@@ -5,9 +5,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import app.stacq.monster.data.model.Flavor
+import app.stacq.monster.data.model.toFlavor
 import app.stacq.monster.data.source.local.LocalFlavorsDataSource
 import app.stacq.monster.data.source.local.model.FlavorEntity
-import app.stacq.monster.data.model.toFlavor
 import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -23,7 +23,7 @@ class FlavorsRepository(
     @OptIn(ExperimentalPagingApi::class)
     fun getFlavors(): Flow<PagingData<FlavorEntity>> {
         return Pager(
-            config = PagingConfig(pageSize = 10),
+            config = PagingConfig(initialLoadSize = 16, pageSize = 8),
             remoteMediator = FlavorsRemoteMediator(localFlavorsDataSource, remoteFlavorsDataSource)
         ) {
             localFlavorsDataSource.getFlavors()
