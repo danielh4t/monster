@@ -1,6 +1,6 @@
 package app.stacq.monster.data.source.local
 
-import androidx.paging.PagingSource
+
 import app.stacq.monster.data.source.local.model.FlavorEntity
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -20,14 +20,6 @@ class LocalFlavorDataSource(
     fun getFlavor(flavorName: String): Flow<FlavorEntity?> {
         return database.getFlavor(flavorName)
             .flowOn(ioDispatcher)
-    }
-
-    suspend fun insertFlavors(flavorEntities: List<FlavorEntity>) = withContext(ioDispatcher) {
-        database.insertFlavors(flavorEntities)
-    }
-
-    suspend fun getLastFlavorId(): Int? = withContext(ioDispatcher) {
-        database.getLastFlavorId()
     }
 
     suspend fun updateFlavor(flavorEntity: FlavorEntity) = withContext(ioDispatcher) {
