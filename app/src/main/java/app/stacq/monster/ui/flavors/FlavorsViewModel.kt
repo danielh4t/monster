@@ -1,19 +1,12 @@
 package app.stacq.monster.ui.flavors
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.paging.cachedIn
-import androidx.paging.map
-import app.stacq.monster.data.model.toFlavor
-import app.stacq.monster.data.repository.flavors.FlavorsRepository
-import kotlinx.coroutines.flow.map
+import app.stacq.monster.data.repository.flavors.FlavorRepository
+import app.stacq.monster.domain.model.Flavor
+import kotlinx.coroutines.flow.Flow
 
-class FlavorsViewModel(flavorsRepository: FlavorsRepository) : ViewModel() {
 
-    val flavors = flavorsRepository.getFlavors()
-        .map { pagingData ->
-            pagingData.map { flavorEntity -> flavorEntity.toFlavor() }
-        }
-        .cachedIn(viewModelScope)
+class FlavorsViewModel(flavorRepository: FlavorRepository) : ViewModel() {
 
+    val flavors: Flow<List<Flavor>> = flavorRepository.getFlavors()
 }

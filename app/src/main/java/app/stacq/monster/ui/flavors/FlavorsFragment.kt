@@ -10,9 +10,9 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import app.stacq.monster.MonsterApplication
-import app.stacq.monster.data.repository.flavors.FlavorsRepository
-import app.stacq.monster.data.source.local.LocalFlavorsDataSource
-import app.stacq.monster.data.source.remote.RemoteFlavorsDataSource
+import app.stacq.monster.data.repository.flavors.FlavorRepository
+import app.stacq.monster.data.source.local.LocalFlavorDataSource
+import app.stacq.monster.data.source.remote.RemoteFlavorDataSource
 import app.stacq.monster.databinding.FragmentFlavorsBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 /**
  * A [Fragment] subclass as the default destination in the navigation.
- * It shows all available monster drinks
+ * It shows all available flavors
  */
 class FlavorsFragment : Fragment() {
 
@@ -41,13 +41,13 @@ class FlavorsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val database = (activity?.application as MonsterApplication).database
-        val localFlavorsDataSource = LocalFlavorsDataSource(database.flavorDao())
-        val remoteFlavorsDataSource = RemoteFlavorsDataSource(Firebase.firestore)
-        val flavorsRepository = FlavorsRepository(localFlavorsDataSource, remoteFlavorsDataSource)
+        val localFlavorDataSource = LocalFlavorDataSource(database.flavorDao())
+        val remoteFlavorDataSource = RemoteFlavorDataSource(Firebase.firestore)
+        val flavorRepository = FlavorRepository(localFlavorDataSource, remoteFlavorDataSource)
 
         val viewModel: FlavorsViewModel by activityViewModels {
             FlavorsViewModelFactory(
-                flavorsRepository
+                flavorRepository
             )
         }
 
@@ -60,7 +60,7 @@ class FlavorsFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.flavors.collectLatest {
-                    adapter.submitData(it)
+                    adapter.submitList(it)
                 }
             }
         }

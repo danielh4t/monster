@@ -1,4 +1,4 @@
-package app.stacq.monster.data.model
+package app.stacq.monster.domain.model
 
 import androidx.annotation.Keep
 import app.stacq.monster.data.source.local.model.FlavorEntity

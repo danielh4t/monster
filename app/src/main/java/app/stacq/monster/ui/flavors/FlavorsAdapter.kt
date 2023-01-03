@@ -3,16 +3,16 @@ package app.stacq.monster.ui.flavors
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.stacq.monster.data.model.Flavor
 import app.stacq.monster.databinding.ListItemFlavorBinding
+import app.stacq.monster.domain.model.Flavor
 
 
 class FlavorsAdapter(
     private val viewModel: FlavorsViewModel
-) : PagingDataAdapter<Flavor, FlavorsAdapter.ViewHolder>(FlavorDiffCallback()) {
+) : ListAdapter<Flavor, FlavorsAdapter.ViewHolder>(FLAVOR_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -43,11 +43,12 @@ class FlavorsAdapter(
         fun bind(flavor: Flavor, viewModel: FlavorsViewModel) {
             binding.flavor = flavor
             binding.viewModel = viewModel
+            binding.executePendingBindings()
         }
     }
 }
 
-class FlavorDiffCallback : DiffUtil.ItemCallback<Flavor>() {
+val FLAVOR_COMPARATOR = object : DiffUtil.ItemCallback<Flavor>() {
 
     override fun areItemsTheSame(oldItem: Flavor, newItem: Flavor): Boolean {
         return oldItem.id == newItem.id

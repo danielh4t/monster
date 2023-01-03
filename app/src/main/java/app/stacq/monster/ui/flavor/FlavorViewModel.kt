@@ -2,19 +2,17 @@ package app.stacq.monster.ui.flavor
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.stacq.monster.data.model.Flavor
-import app.stacq.monster.data.model.toFlavorEntity
-import app.stacq.monster.data.repository.flavors.FlavorsRepository
-import kotlinx.coroutines.flow.SharingStarted
+import app.stacq.monster.domain.model.Flavor
+import app.stacq.monster.domain.model.toFlavorEntity
+import app.stacq.monster.data.repository.flavors.FlavorRepository
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 
-class FlavorViewModel(private val flavorsRepository: FlavorsRepository, flavorName: String) :
+class FlavorViewModel(private val flavorRepository: FlavorRepository, flavorName: String) :
     ViewModel() {
 
-    val flavor = flavorsRepository.getFlavor(flavorName)
+    val flavor = flavorRepository.getFlavor(flavorName)
 
     fun rate(rating: Float) {
         viewModelScope.launch {
@@ -41,7 +39,7 @@ class FlavorViewModel(private val flavorsRepository: FlavorsRepository, flavorNa
 
     private fun updateFlavor(flavor: Flavor) {
         viewModelScope.launch {
-            flavorsRepository.updateFlavor(flavor.toFlavorEntity())
+            flavorRepository.updateFlavor(flavor.toFlavorEntity())
         }
     }
 }

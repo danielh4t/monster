@@ -1,6 +1,5 @@
 package app.stacq.monster.data.source.local
 
-import androidx.paging.PagingSource
 import androidx.room.*
 import app.stacq.monster.data.source.local.model.FlavorEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface FlavorsDao {
 
     @Query("SELECT * FROM flavor")
-    fun getFlavors(): PagingSource<Int, FlavorEntity>
+    fun getFlavors(): Flow<List<FlavorEntity>>
 
     @Query("SELECT * FROM flavor WHERE name=:flavorName")
     fun getFlavor(flavorName: String): Flow<FlavorEntity?>
@@ -22,5 +21,4 @@ interface FlavorsDao {
 
     @Update
     suspend fun updateFlavor(flavorEntity: FlavorEntity)
-
 }

@@ -8,12 +8,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
-class LocalFlavorsDataSource(
+class LocalFlavorDataSource(
     private val database: FlavorsDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
-    fun getFlavors(): PagingSource<Int, FlavorEntity> {
+    fun getFlavors(): Flow<List<FlavorEntity>> {
         return database.getFlavors()
     }
 

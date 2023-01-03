@@ -2,6 +2,7 @@ package app.stacq.monster.ui.flavors
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import app.stacq.monster.R
 import coil.load
 import coil.size.Scale
 import com.google.firebase.storage.FirebaseStorage
@@ -13,8 +14,8 @@ fun ImageView.setImage(image: String?) {
     val imageRef = image?.let { storageRef.child(it) }
     imageRef?.downloadUrl?.addOnSuccessListener {
         load(it) {
+            placeholder(R.drawable.ic_heart)
             scale(Scale.FIT)
         }
     }
-
 }

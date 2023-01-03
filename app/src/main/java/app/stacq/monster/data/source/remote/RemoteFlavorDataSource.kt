@@ -10,9 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.tasks.await
 
-class RemoteFlavorsDataSource(
+class RemoteFlavorDataSource(
     private val database: FirebaseFirestore,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
@@ -31,16 +30,4 @@ class RemoteFlavorsDataSource(
             .map { value: DocumentSnapshot -> value.toObject(FlavorDocument::class.java) }
             .flowOn(ioDispatcher)
     }
-
-    suspend fun getFlavorsQuery(after: Int?, limit: Int): List<FlavorDocument> {
-        return database.collection("flavors")
-            .orderBy("id")
-            .startAt(after)
-            .limit(limit.toLong())
-            .get()
-            .await()
-            .toObjects(FlavorDocument::class.java)
-
-    }
-
 }
