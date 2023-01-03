@@ -8,3 +8,8 @@ fun FirebaseAppCheck.installCheckProviderFactory() {
         PlayIntegrityAppCheckProviderFactory.getInstance()
     );
 }
+
+fun String.storageUri(): Uri {
+    val flavors = "https://firebasestorage.googleapis.com/v0/b/monster-stacq.appspot.com/o/${Uri.encode(this)}?alt=media"
+    return flavors.toUri()
+}

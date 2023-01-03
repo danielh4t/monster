@@ -29,8 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:loadImage="@{flavor.image}"
-            tools:srcCompat="@drawable/original" />
+            app:loadImage="@{flavor.image}" />
 
         <TextView
             android:id="@+id/nameText"
